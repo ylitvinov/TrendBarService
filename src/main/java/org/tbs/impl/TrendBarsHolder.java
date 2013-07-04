@@ -42,7 +42,7 @@ public class TrendBarsHolder {
         }
     }
 
-    public synchronized List<TrendBar> getHistory(Long from, Long to) {
+    public synchronized List<TrendBar> getHistory(long from, Long to) {
         List<TrendBar> result = new ArrayList<TrendBar>();
         int currentPeriodIdx = getTrendBarIdx(from);
 
@@ -63,7 +63,8 @@ public class TrendBarsHolder {
             currentPeriodIdx++;
         }
         if (!result.isEmpty()) {
-            addEmptyTrendBars(result, result.get(result.size() - 1), periodStartTime);
+            long limit = to == null ? periodStartTime : Math.min(to, periodStartTime);
+            addEmptyTrendBars(result, result.get(result.size() - 1), limit);
         }
         return result;
     }
@@ -82,11 +83,11 @@ public class TrendBarsHolder {
 
     private int getTrendBarIdx(Long from) {
         int index = 0;
-        while (completedTrendBars.size() < index
-                && completedTrendBars.get(index).getStartTime() + period.getSeconds() < from) {
+        while (index < completedTrendBars.size()
+                && completedTrendBars.get(index).getStartTime() + period.getSeconds() <= from) {
             index++;
         }
-        return index == 0 ? 0 : index - 1;
+        return index;
     }
 
     private void addToExistingTrendBar(Quote quote) {
