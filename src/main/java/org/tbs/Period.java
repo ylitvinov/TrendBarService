@@ -5,8 +5,6 @@ package org.tbs;
  */
 public class Period {
 
-    public static final int MS_IN_MINUTE = 60000;
-
     private final int seconds;
 
     private Period(int seconds) {
