@@ -53,4 +53,15 @@ public class TrendBar {
     public float getLowPrice() {
         return lowPrice;
     }
+
+    @Override
+    public String toString() {
+        return "TrendBar{" +
+                "startTime=" + startTime +
+                ", openPrice=" + openPrice +
+                ", closePrice=" + closePrice +
+                ", lowPrice=" + lowPrice +
+                ", highPrice=" + highPrice +
+                '}';
+    }
 }
