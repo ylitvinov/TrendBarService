@@ -27,7 +27,7 @@ public class RandomQuotesProducer extends Thread {
             // lets assume our time moves 100 times faster
             long timestamp = System.currentTimeMillis() * 1000;
 
-            // replace, if slow ;)
+            // might be not very random and a little bit slow ;)
             int price = random.nextInt(1000);
 
             trendBarService.registerQuote(new Quote(symbol, timestamp, price));

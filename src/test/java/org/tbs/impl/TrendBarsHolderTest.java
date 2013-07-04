@@ -60,6 +60,7 @@ public class TrendBarsHolderTest {
 
         List<TrendBar> observed = trendBarsHolder.getHistory(0l, Long.MAX_VALUE);
 
+        // trend bar is not yet completed
         assertThat(observed).isEmpty();
     }
 
@@ -70,6 +71,7 @@ public class TrendBarsHolderTest {
 
         List<TrendBar> observed = trendBarsHolder.getHistory(0l, Long.MAX_VALUE);
 
+        // only first trend bar is completed
         assertThat(observed).hasSize(1);
         assertTrendBar(observed.get(0), 10, 10, 10, 10, 0);
     }
@@ -96,6 +98,8 @@ public class TrendBarsHolderTest {
         TrendBarsHolder trendBarsHolder = new TrendBarsHolder(period);
         trendBarsHolder.register(new Quote(Symbol.EURJPY, 1, 10)); // first minute
         trendBarsHolder.register(new Quote(Symbol.EURJPY, periodSec + 1, 20)); // second minute
+        // 3rd period has no quotes
+        // 4rd period has no quotes
         trendBarsHolder.register(new Quote(Symbol.EURJPY, periodSec * 4 + 1, 30)); // 5'th minute
 
         List<TrendBar> observed = trendBarsHolder.getHistory(0l, Long.MAX_VALUE);
