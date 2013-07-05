@@ -10,7 +10,7 @@ import java.util.List;
 public class Example {
 
     private static final Symbol symbol = Symbol.EURJPY;
-    private static final long QUOTES = 1000000l;
+    private static final long QUOTES = 1000000L;
     private static final int CHECK_POINTS = 10;
 
     public static void main(String[] args) throws InterruptedException {
@@ -20,7 +20,7 @@ public class Example {
         producer.start();
 
         producer.join();
-        List<TrendBar> history = service.getHistory(symbol, Period.minutes(1), 0l, null);
+        List<TrendBar> history = service.getHistory(symbol, Period.minutes(1), 0L, null);
         for (TrendBar trendBar : history) {
             System.out.println(trendBar);
         }

@@ -50,7 +50,7 @@ public class TrendBarService implements ITrendBarService {
             throw new IllegalArgumentException("No trend bars for the '" + symbol + "' and period '" + period + "'");
         }
         if (from == null) {
-            from = 0l;
+            from = 0L;
         }
         return trendBarsHolder.getHistory(from, to);
     }
